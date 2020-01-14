@@ -4,10 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>weather</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 <body>
+ <div class="jumbotron jumbotron-fluid">
+           <div class="container">
+            <h1 class="display-4">WEATHER FORCAST</h1>
+           <p class="lead"> FOR ALL YOUR WEATHER NEEDS</p>
+           <p>COME HERE</p>
+        </div>
+         </div>
+
+<iframe src="http://free.timeanddate.com/clock/i740wiy8/n179/fn15/fs24/fc00f/ftbiu/tt0/tb4" frameborder="0" width="318" height="56"></iframe>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript"></script>
+
+
+<script>
+
+ var queryURL = "https://openweathermap.org/ key=809ca8cb6186d89628eb22d129fb1ffa tag=weather";
+
+  $.ajax({
+ url: queryURL,
+ method: "GET"
+})
+
+      
+
+</script>
+   
+        
+
     
+
+
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+  <script src="script.js"></script>
+
+
+  <h2>&copy;EvanStein</h2>
+
 </body>
 </html>

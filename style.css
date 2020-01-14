@@ -1,0 +1,24 @@
+h1{
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    color: blue;
+    text-decoration: underline;
+    
+}
+h2{
+    float: right;
+    color: blue;
+    font-family: 'Libre Baskerville', serif;
+    padding: 25px;
+}
+
+p{
+    font-family: 'Permanent Marker', cursive;
+    color: blue;
+    text-decoration: underline;
+    text-align: center;
+}
+
+
+
+
