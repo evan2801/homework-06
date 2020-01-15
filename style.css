@@ -6,10 +6,11 @@ h1{
     
 }
 h2{
-    float: right;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
     color: blue;
-    font-family: 'Libre Baskerville', serif;
-    padding: 25px;
+     
+    
 }
 
 p{
@@ -19,6 +20,32 @@ p{
     text-align: center;
 }
 
+h3
+{
+    text-align: center;
+    color: blue;
+    font-family: 'Permanent Marker', cursive;
+}
+
+body{
+    background: grey;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: flex-start;
+}
+
+.jumbrotron-custom {
+    background: grey;
+}
 
 
-
+.copyright {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Gelasio', serif;
+    color: blue;
+    font-size: 30px;
+}
