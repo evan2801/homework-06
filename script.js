@@ -3,7 +3,7 @@ var intervalId;
 
 // set up interval to update time every second
 intervalId = setInterval(function() {
-    var currentTime = moment().format('dddd, MMMM YYYY [at] hh:mm:ss a');
+    var currentTime = moment().format('dddd, MMMM Do, YYYY [at] hh:mm:ss a [EST:]');
     $("#current-time").text(currentTime);
 }, 1000);
 
@@ -59,8 +59,11 @@ function getWeatherInfo(event) {
 
         $("#weather-view").prepend(weatherDiv)
 
+        getForecastInfo(placeToSearch);
 
     })
+
+
 }
 
 function getForecastInfo(city) {
@@ -71,19 +74,29 @@ function getForecastInfo(city) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+        
         console.log(response)
 
         //weather for 5 days
         var tempList = response.list
 
-        for (var i = 0; i < tempList.length; i++) {
-            var tempMin = response.list[i].main.temp_min
+        var fiveDayList = tempList.filter(function(day) {
+            if (day.dt_txt.includes("12:00")) {
+                return true;
+            }
+            return false;
+        })
+
+        for (var i = 0; i < fiveDayList.length; i++) {
+            var tempMin = fiveDayList[i].main.temp_min
             tempMin = convertKToF(tempMin)
             console.log(tempMin)
-            var tempMax = response.list[i].main.temp_max
+            var tempMax = fiveDayList[i].main.temp_max
             tempMax = convertKToF(tempMax)
-            var dateTime = response.list[i].dt_txt
+            var dateTime = fiveDayList[i].dt_txt
             console.log(dateTime)
+
+            
 
             var forecastDiv = $("<div class='forecast'>");
 
@@ -116,6 +129,7 @@ function getForecastInfo(city) {
 
 
 }
+
 
 function convertKToF(temp) {
     return temp * 9 / 5 - 459.67
