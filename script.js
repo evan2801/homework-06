@@ -3,7 +3,9 @@ var intervalId;
 
 // set up interval to update time every second
 intervalId = setInterval(function () {
-    var currentTime = moment().format('dddd, MMMM Do, YYYY [at] hh:mm:ss a [EST:]');
+    var currentDate = moment().format(`dddd, MMMM Do, YYYY`);
+    var currentTime = moment().format('  hh:mm:ss a [EST:]');
+    $("#current-date").text(currentDate);
     $("#current-time").text(currentTime);
 }, 1000);
 
@@ -29,7 +31,7 @@ function getWeatherInfo(event) {
         var longetude = response.coord.lon;
         console.log(longetude);
         var tempInKelvin = response.main.temp
-        var tempInFahrenheit = parseFloat(convertKToF(tempInKelvin)).toFixed(2)
+        var tempInFahrenheit = parseFloat(convertKToF(tempInKelvin)).toFixed()
         console.log(tempInFahrenheit)
         var weather = response.weather[0].description
         console.log(weather)
@@ -45,28 +47,28 @@ function getWeatherInfo(event) {
 
 
 
-        var pOne = $("<p>").text("temp: " + tempInFahrenheit);
+        var pOne = $("<h5>").text("temp: " + tempInFahrenheit + "°F");
 
 
         weatherDiv.append(pOne);
 
-        var pTwo = $("<p>").text("description: " + weather);
+        var pTwo = $("<h5>").text("description: " + weather);
 
         weatherDiv.append(pTwo)
 
-        var pThree = $("<p>").text("wind: " + speed);
+        var pThree = $("<h5>").text("wind: " + speed);
 
         weatherDiv.append(pThree)
 
-        var pFour = $("<p>").text("humidity: " + humidity);
+        var pFour = $("<h5>").text("humidity: " + humidity);
 
         weatherDiv.append(pFour)
 
-        var pFive = $("<p>").text("lattatude: " + lattatitude);
+        var pFive = $("<h5>").text("lattatude: " + lattatitude);
 
         weatherDiv.append(pFive)
 
-        var pSix = $("<p>").text("longetude: " + longetude);
+        var pSix = $("<h5>").text("longetude: " + longetude);
 
         weatherDiv.append(pSix)
 
@@ -99,20 +101,20 @@ function getForecastInfo(city) {
         //weather for 5 days
         var tempList = response.list
 
-        var fiveDayList = tempList.filter(function (day) {
+        var tenDayList = tempList.filter(function (day) {
             if (day.dt_txt.includes("12:00")) {
                 return true;
             }
             return false;
         })
 
-        for (var i = 0; i < fiveDayList.length; i++) {
-            var tempMin = fiveDayList[i].main.temp_min
-            tempMin = parseFloat(convertKToF(tempMin)).toFixed(2);
+        for (var i = 0; i < tenDayList.length; i++) {
+            var tempMin = tenDayList[i].main.temp_min
+            tempMin = parseFloat(convertKToF(tempMin)).toFixed();
             console.log(tempMin)
-            var tempMax = fiveDayList[i].main.temp_max
-            tempMax = parseFloat(convertKToF(tempMax)).toFixed(2);
-            var dateTime = fiveDayList[i].dt_txt
+            var tempMax = tenDayList[i].main.temp_max
+            tempMax = parseFloat(convertKToF(tempMax)).toFixed();
+            var dateTime = tenDayList[i].dt_txt
             console.log(dateTime)
 
 
@@ -120,15 +122,15 @@ function getForecastInfo(city) {
             var forecastDiv = $("<div class='forecast'>");
 
 
-            var pOne = $("<p>").text("low of: " + tempMin);
+            var pOne = $("<h5>").text("LOW OF: " + tempMin + "°F");
 
             forecastDiv.append(pOne)
 
-            var pTwo = $("<p>").text("high of: " + tempMax);
+            var pTwo = $("<h5>").text("HIGH OF: " + tempMax + "°F");
 
             forecastDiv.append(pTwo)
 
-            var pThree = $("<p>").text("date: " + dateTime);
+            var pThree = $("<h6>").text("DATE: " + dateTime);
 
             forecastDiv.append(pThree)
 
