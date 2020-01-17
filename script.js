@@ -16,7 +16,7 @@ function getWeatherInfo(event) {
     console.log(placeToSearch)
     getForecastInfo(placeToSearch)
 
-    var queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${placeToSearch}&APPID=${appid}`
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${placeToSearch}&APPID=${appid}`
 
 
 
@@ -89,7 +89,7 @@ function getWeatherInfo(event) {
 
 function getForecastInfo(city) {
 
-    var queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${appid}`
+    var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${appid}`
 
     $.ajax({
         url: queryURL,
@@ -132,7 +132,7 @@ function getForecastInfo(city) {
             forecastDiv.append(pTwo)
 
 
-            var pThree = $("<h6>").text (dateTime);
+            var pThree = $("<h6>").text( dateTime);
 
             forecastDiv.append(pThree)
 
