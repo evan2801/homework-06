@@ -109,12 +109,12 @@ function getForecastInfo(city) {
         })
 
         for (var i = 0; i < tenDayList.length; i++) {
+            var tempMax = tenDayList[i].main.temp_max
+            tempMax = parseFloat(convertKToF(tempMax)).toFixed();
             var tempMin = tenDayList[i].main.temp_min
             tempMin = parseFloat(convertKToF(tempMin)).toFixed();
             console.log(tempMin)
-            var tempMax = tenDayList[i].main.temp_max
-            tempMax = parseFloat(convertKToF(tempMax)).toFixed();
-            var dateTime = tenDayList[i].dt_txt
+            var dateTime = moment(tenDayList[i].dt_txt).format(`dddd, MMMM Do`)
             console.log(dateTime)
 
 
@@ -122,15 +122,17 @@ function getForecastInfo(city) {
             var forecastDiv = $("<div class='forecast'>");
 
 
-            var pOne = $("<h5>").text("LOW OF: " + tempMin + "°F");
+            var pOne = $("<h5>").text("HIGH OF: " + tempMax + "°F");
 
             forecastDiv.append(pOne)
 
-            var pTwo = $("<h5>").text("HIGH OF: " + tempMax + "°F");
+
+            var pTwo = $("<h5>").text("LOW OF: " + tempMin + "°F");
 
             forecastDiv.append(pTwo)
 
-            var pThree = $("<h6>").text("DATE: " + dateTime);
+
+            var pThree = $("<h6>").text (dateTime);
 
             forecastDiv.append(pThree)
 
