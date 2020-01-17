@@ -14,7 +14,6 @@ function getWeatherInfo(event) {
     var placeToSearch = $('#weather-input').val()
 
     console.log(placeToSearch)
-    getForecastInfo(placeToSearch)
 
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${placeToSearch}&APPID=${appid}`
 
@@ -95,26 +94,30 @@ function getForecastInfo(city) {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-
+        $("#forecast-view").empty();
         console.log(response)
 
         //weather for 5 days
         var tempList = response.list
+        
 
-        var tenDayList = tempList.filter(function (day) {
+        var fiveDayList = tempList.filter(function (day) {
             if (day.dt_txt.includes("12:00")) {
                 return true;
             }
             return false;
         })
 
-        for (var i = 0; i < tenDayList.length; i++) {
-            var tempMax = tenDayList[i].main.temp_max
+        console.log(fiveDayList);
+
+        for (var i = 0; i < fiveDayList.length; i++) {
+            console.log(i);
+            var tempMax = fiveDayList[i].main.temp_max
             tempMax = parseFloat(convertKToF(tempMax)).toFixed();
-            var tempMin = tenDayList[i].main.temp_min
+            var tempMin = fiveDayList[i].main.temp_min
             tempMin = parseFloat(convertKToF(tempMin)).toFixed();
             console.log(tempMin)
-            var dateTime = moment(tenDayList[i].dt_txt).format(`dddd, MMMM Do`)
+            var dateTime = moment(fiveDayList[i].dt_txt).format(`dddd, MMMM Do`)
             console.log(dateTime)
 
 
